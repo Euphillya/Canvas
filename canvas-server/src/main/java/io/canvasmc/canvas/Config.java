@@ -771,4 +771,22 @@ public class Config {
         "empty void. With this option enabled, Canvas will make the client display this screen which can be more visually appealing"
     })
     public boolean displayWorldLoadScreenForPortaling = true;
+
+    @Comment({
+        "Canvas adds extra thread checks to the Spigot/Paper API. This config controls how severe these thread checks are",
+        "The options are:",
+        " - SILENT: All thread checks that don't pass won't log or throw, it goes silent. Not recommended ever",
+        " - WARN: All thread checks that don't pass will log a warning in console, and proceed with the operation. It's",
+        "         recommended to contact the developers of the plugin causing the unsafe access when you see said warnings",
+        " - THROW: All thread checks that don't pass will throw an exception, potentially crashing the server. This is",
+        "          the safest option for trying to prevent corrupt states or prevent unsafe accesses, however not recommended",
+        "          for runtime production without thoroughly testing plugins in a private server first"
+    })
+    public ExtraThreadChecksLevel extraThreadChecksLevel = ExtraThreadChecksLevel.WARN;
+
+    public enum ExtraThreadChecksLevel {
+        SILENT,
+        WARN,
+        THROW;
+    }
 }
